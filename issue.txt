@@ -1,8 +1,22 @@
 # TO DO
+Создал в github репозиторий с пресетом .gitignore для python
+Клонировал в локальный проект
+Настройка на windows, cmd:
+    Создал виртуальное окружение
+        python -m venv venv
+        venv/scripts/activate
+        pip install django
+        pip freeze > requirements.txt
+    Стёр явное указание версий django для поддержки актуальности
 
-Задание 1
+    Создал проект Django через консоль:
+        django-admin startproject config .
+    Прописал скрипт параметр "runserver" в конфигурации к "manage.py"
+
+Задание 1.
 Подключите СУБД PostgreSQL для работы в проекте, для этого:
 Создайте базу данных в ручном режиме.
+    Создал вручную в pgAdmin БД.
 Внесите изменения в настройки подключения.
 
 Задание 2
