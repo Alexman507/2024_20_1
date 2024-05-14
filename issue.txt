@@ -34,7 +34,7 @@
 Product,
 Category.
     python manage.py startapp main
-
+    main/models.py
 Опишите для них начальные настройки.
 
 Задание 3
