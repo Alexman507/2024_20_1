@@ -153,7 +153,7 @@ python -Xutf8 manage.py dumpdata main --exclude contenttypes --output main/data/
 
 Напишите кастомную команду, которая умеет заполнять данные в базу данных,
 при этом предварительно ее зачищать от старых данных.
-
+python manage.py fill
 Подсказка
 Удалите все объекты с помощью ORM-запроса
 Модель.objects.all().delete(). Удалить необходимо продукты и категории.
