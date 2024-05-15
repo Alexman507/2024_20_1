@@ -66,6 +66,11 @@ Category
 (MEDIA URL, MEDIA ROOT, настроить URL для отображения медиаданных) в проект,
 а также установить библиотеку для работы с изображениями Pillow.
     pip install pillow
+    urlpatterns = [
+    path('admin/', admin.site.urls),
+                    ]
+    if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 Не забудьте обновить файл с зависимостями для проекта после установки новой библиотеки.
     python manage.py migrate
 
