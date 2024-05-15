@@ -148,6 +148,9 @@ filter() и указать в скобках имя_поля=”значение
 
 python -Xutf8 manage.py dumpdata имя_приложения >
 имя_папки_с_фикстурами/имя_приложения_data.json
+
+python -Xutf8 manage.py dumpdata main --exclude contenttypes --output main/data/main_data.json
+
 Напишите кастомную команду, которая умеет заполнять данные в базу данных,
 при этом предварительно ее зачищать от старых данных.
 

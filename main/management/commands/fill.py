@@ -1,6 +1,8 @@
 import json
 
 from django.core.management import BaseCommand
+from django.db import connection
+
 from main.models import Category, Product
 
 
@@ -8,18 +10,18 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_data():
-        with open('data/main_data.json', encoding='utf-8') as json_file:
+        with open('main/data/main_data.json', encoding='utf-8') as json_file:
             return json.load(json_file)
 
     def handle(self, *args, **options):
-
+        with connection.cursor() as cursor:
+            cursor.execute(f"TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;")
+            cursor.execute(f"TRUNCATE TABLE catalog_product RESTART IDENTITY CASCADE;")
         # Удалите все продукты
         Product.objects.all().delete()
-        Product.truncate_table_restart_id()
 
         # Удалите все категории
         Category.objects.all().delete()
-        Category.truncate_table_restart_id()
 
         # Создайте списки для хранения объектов
         product_list = []
