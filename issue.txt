@@ -34,7 +34,10 @@
 Product,
 Category.
     python manage.py startapp main
+    settings.py -> INSTALLED_APPS +'main'
     main/models.py
+    python manage.py makemigrations
+
 Опишите для них начальные настройки.
 
 Задание 3
@@ -62,7 +65,9 @@ Category
 Для поля с изображением необходимо добавить соответствующие настройки
 (MEDIA URL, MEDIA ROOT, настроить URL для отображения медиаданных) в проект,
 а также установить библиотеку для работы с изображениями Pillow.
+    pip install pillow
 Не забудьте обновить файл с зависимостями для проекта после установки новой библиотеки.
+    python manage.py migrate
 
 Задание 4
 Перенесите отображение моделей в базу данных с помощью инструмента миграций, для этого:
