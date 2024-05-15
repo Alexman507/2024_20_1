@@ -1,10 +1,12 @@
 from django.db import models
 from django.utils import timezone
 
+NULLABLE = {'null': True, 'blank': True}
+
 
 class Category(models.Model):
     name = models.CharField(max_length=250, verbose_name='Название')
-    description = models.TextField(verbose_name='Описание')
+    description = models.TextField(verbose_name='Описание', **NULLABLE)
 
     def __str__(self):
         return f'{self.name}'
@@ -12,9 +14,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
-
-
-NULLABLE = {'null': True, 'blank': True}
 
 
 class Product(models.Model):
