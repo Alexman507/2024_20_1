@@ -1,14 +1,43 @@
 # TO DO
+Создал в github репозиторий с пресетом .gitignore для python
+Клонировал в локальный проект
+Настройка на windows, cmd:
+    Создал виртуальное окружение
+        python -m venv venv
+        venv/scripts/activate
+        pip install django
+        pip freeze > requirements.txt
+    Стёр явное указание версий django для поддержки актуальности
 
-Задание 1
+    Создал проект Django через консоль:
+        django-admin startproject config .
+    Прописал скрипт параметр "runserver" в конфигурации к "manage.py"
+
+Задание 1.
 Подключите СУБД PostgreSQL для работы в проекте, для этого:
 Создайте базу данных в ручном режиме.
+    Создал вручную в pgAdmin БД.
 Внесите изменения в настройки подключения.
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'djangoorm',  # Название БД
+        'USER': 'postgres',  # Пользователь для подключения
+        'PASSWORD': '123',  # Пароль для этого пользователя
+        'HOST': '127.0.0.1',  # Адрес, на котором развернут сервер БД
+        'PORT': 5432,  # Порт, на котором работает сервер БД
+    }
+}
 
 Задание 2
 В приложении каталога создайте модели:
 Product,
 Category.
+    python manage.py startapp main
+    settings.py -> INSTALLED_APPS +'main'
+    main/models.py
+    python manage.py makemigrations
+
 Опишите для них начальные настройки.
 
 Задание 3
@@ -36,7 +65,14 @@ Category
 Для поля с изображением необходимо добавить соответствующие настройки
 (MEDIA URL, MEDIA ROOT, настроить URL для отображения медиаданных) в проект,
 а также установить библиотеку для работы с изображениями Pillow.
+    pip install pillow
+    urlpatterns = [
+    path('admin/', admin.site.urls),
+                    ]
+    if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 Не забудьте обновить файл с зависимостями для проекта после установки новой библиотеки.
+    python manage.py migrate
 
 Задание 4
 Перенесите отображение моделей в базу данных с помощью инструмента миграций, для этого:
@@ -57,6 +93,7 @@ python manage.py migrate имя_приложения номер_миграции
 Номер миграции написан в названии файла.
 
 Задание 5
+    python manage.py createsuperuser
 Для моделей категории и продукта настройте отображение в административной панели.
 Для категорий выведите id и наименование в список отображения,
 а для продуктов выведите в список id, название, цену и категорию.
@@ -111,9 +148,12 @@ filter() и указать в скобках имя_поля=”значение
 
 python -Xutf8 manage.py dumpdata имя_приложения >
 имя_папки_с_фикстурами/имя_приложения_data.json
+
+python -Xutf8 manage.py dumpdata main --exclude contenttypes --output main/data/main_data.json
+
 Напишите кастомную команду, которая умеет заполнять данные в базу данных,
 при этом предварительно ее зачищать от старых данных.
-
+python manage.py fill
 Подсказка
 Удалите все объекты с помощью ORM-запроса
 Модель.objects.all().delete(). Удалить необходимо продукты и категории.
