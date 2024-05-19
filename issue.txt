@@ -12,6 +12,8 @@
     Создал проект Django через консоль:
         django-admin startproject config .
     Прописал скрипт параметр "runserver" в конфигурации к "manage.py"
+    Создал приложение main:
+	python manage.py startapp main
 
 Задание 1.
 Подключите СУБД PostgreSQL для работы в проекте, для этого:
